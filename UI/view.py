@@ -26,6 +26,8 @@ class View(ft.UserControl):
 
         self._ddAnno1 = ft.Dropdown(label="Da", hint_text="Anno")
         self._ddAnno2 = ft.Dropdown(label="A", hint_text="Anno")
+        self._controller.fillDD()
+
         self._btnCreaGrafo = ft.ElevatedButton(text="Crea Grafo", on_click=self._controller.handleCreaGrafo)
 
 
@@ -35,21 +37,21 @@ class View(ft.UserControl):
                       vertical_alignment=ft.CrossAxisAlignment.END)
 
         self._btnstampa = ft.ElevatedButton(text="Stampa Dettagli",
-                                           on_click=self._controller.handleDettagli)
+                                           on_click=self._controller.handleDettagli, disabled=True)
         row2 = ft.Row([ft.Container(self._btnstampa, width=250)
                        ], alignment=ft.MainAxisAlignment.CENTER)
 
 
-        self._txtInK = ft.TextField(label="Num di piloti")
+        self._txtInK = ft.TextField(label="Num di piloti", disabled=True)
         self._btnCerca = ft.ElevatedButton(text="Cerca lista piloti",
-                                           on_click=self._controller.handleCerca)
+                                           on_click=self._controller.handleCerca, disabled=True)
         row3 = ft.Row([ft.Container(self._txtInK, width=250), ft.Container(self._btnCerca, width=250)], alignment=ft.MainAxisAlignment.CENTER)
 
         self._page.controls.append(row1)
         self._page.controls.append(row2)
         self._page.controls.append(row3)
-        self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
-        self._page.controls.append(self.txt_result)
+        self._txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
+        self._page.controls.append(self._txt_result)
         self._page.update()
 
     def set_controller(self, controller):
